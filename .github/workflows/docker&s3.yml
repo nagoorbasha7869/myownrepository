@@ -21,7 +21,7 @@ jobs:
       - name: Pull Nginx Image from DockerHub
         run: docker pull nginx:latest
 
-      - name: Tag Nginx Image DockerHub Username
+      - name: Tag Nginx Image DockerHub Usernme
         run: docker tag nginx:latest $DOCKERHUB_USERNAME/nginx:latest
 
       - name: Login to DockerHub
