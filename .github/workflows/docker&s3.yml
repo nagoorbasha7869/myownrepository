@@ -39,7 +39,7 @@ jobs:
            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
-      - name: Push Docker image tag to S3
+      - name: Push Docker image tag 2 S3
         run: |
           aws s3 cp s3://my-github-actions-bucket/nginx/latest .
       
