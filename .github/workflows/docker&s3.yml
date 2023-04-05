@@ -32,5 +32,14 @@ jobs:
 
       - name: Push Nginx Image to DockerHub
         run: docker push $DOCKERHUB_USERNAME/nginx:latest
+        
+      - name: Push Docker image tag to S3
+        run: |
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+               # Push Docker image tag to S3
+            aws s3 cp s3://my-github-actions-bucket/<to>/latest.tar.gz .
+
 
      
