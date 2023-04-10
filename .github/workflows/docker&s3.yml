@@ -36,7 +36,7 @@ jobs:
         run: docker save $DOCKERHUB_USERNAME/nginx:v2.0 -o nginx_v2.0.tar
 
       - name: Push Nginx Image to DockerHub
-        run: docker push $DOCKERHUB_USERNAME/nginx:latest
+        run: docker push $DOCKERHUB_USERNAME/nginx:v2.0
         
       
       - name: Configure AWS credntials
