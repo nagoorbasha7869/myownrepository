@@ -42,13 +42,7 @@ jobs:
            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws s3 ls
            
-      - name: Copy Nginx image to S3
-        uses: aws-actions/amazon-s3-upload-action@v2
-        with:
-          aws-region: us-east-1
-          bucket-name: my-github-actions-bucket
-          object-name: nginx/latest
-          source: docker://nginx:latest
+      
 
         
         
