@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Pull Nginx Image from DockerHub
-        run: docker pull nginx:latest
+        run: docker pull nginx
 
       - name: Tag Nginx Image DockerHub Usernme
         run: docker tag nginx:latest $DOCKERHUB_USERNAME/nginx:v1.0
