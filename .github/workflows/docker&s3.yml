@@ -19,6 +19,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ env.DOCKERHUB_PASSWORD }}
 
       - name: Pull Nginx Image from DockerHub
         run: docker pull nginx
@@ -28,12 +34,6 @@ jobs:
 
       - name: Save the image
         run: docker save $DOCKERHUB_USERNAME/nginx:v1.0 -o nginx_v1.0.tar
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ env.DOCKERHUB_USERNAME }}
-          password: ${{ env.DOCKERHUB_PASSWORD }}
 
       - name: Push Nginx Image to DockerHub
         run: docker push $DOCKERHUB_USERNAME/nginx:latest
