@@ -1,0 +1,47 @@
+name: Deploy to ECS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Download nginx_v2.0.tar from S3
+        run: aws s3 cp s3://my-github-actions-bucket/nginx_v2.0.tar .
+
+      - name: Load Docker image from file
+        run: docker load -i nginx_v2.0.tar
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker tag nginx_v2.0 <your-docker-username>/nginx:v2.0
+          docker push ${{ secrets.DOCKER_USERNAME }}/nginx:v2.0
+
+      - name: Deploy to ECS
+        uses: aws-actions/amazon-ecs-deploy-task@v1
+        with:
+          cluster: my-ecs-cluster
+          service: my-ecs-service
+          task-definition: my-ecs-task-definition
+          container-name: nginx
+          image: ${{ secrets.DOCKER_USERNAME }}/nginx:v2.0
