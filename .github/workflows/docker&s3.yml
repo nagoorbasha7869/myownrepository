@@ -42,7 +42,7 @@ jobs:
            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
       - name: Push Docker Image Tag to S3
-        run: aws s3 cp docker.io/$DOCKER_USERNAME/nginx:latest s3://$S3_BUCKET_NAME/nginx:latest
+        run: aws s3 ls
 
         
         
