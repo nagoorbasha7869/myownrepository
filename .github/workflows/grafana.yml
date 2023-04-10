@@ -1,0 +1,15 @@
+name: Configure Prometheus and Grafana Node Exporter
+
+on:
+  push:
+    branches:
+      - main
+env:
+  GRAFANA_NODE_EXPORTER_URL: http://54.159.20.255:3000/
+jobs:
+  configure-prometheus:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure Prometheus
+        run: |
+          curl -XPOST -d "job_name=node-exporter" -d "static_configs=[{targets=['${GRAFANA_NODE_EXPORTER_URL}']}] http://54.159.20.255:9090/api/v1/targets
