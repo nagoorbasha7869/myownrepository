@@ -34,7 +34,7 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag nginx_v2.0 <your-docker-username>/nginx:v2.0
+          docker tag nginx_v2.0 ${{ secrets.DOCKER_USERNAME }}/nginx:v2.0
           docker push ${{ secrets.DOCKER_USERNAME }}/nginx:v2.0
 
       - name: Deploy to ECS
