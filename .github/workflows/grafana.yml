@@ -1,4 +1,4 @@
-name: Configure Prometheus and Grafana Node Exporter
+name: Confgure Prometheus and Grafana Node Exporter
 
 on:
   push:
