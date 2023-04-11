@@ -5,12 +5,12 @@ on:
     branches:
       - main
 env:
-  GRAFANA_NODE_EXPORTER_URL: http://3.93.31.61/3000/
+  GRAFANA_NODE_EXPORTER_URL: http://3.93.31.61:3000/
 jobs:
   configure-prometheus:
     runs-on: ubuntu-latest
     steps:
       - name: Configure Prometheus
         run: |
-          curl -XPOST -d "job=prometheus" -d "targets=${GRAFANA_NODE_EXPORTER_URL}" http://3.93.31.61/9090/api/v1/targets
+          curl -XPOST -d "job=prometheus" -d "targets=${GRAFANA_NODE_EXPORTER_URL}" http://3.93.31.61:9090/api/v1/targets
 
