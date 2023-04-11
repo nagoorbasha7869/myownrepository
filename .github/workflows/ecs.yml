@@ -1,4 +1,4 @@
-name: Deploy toECS
+name: Deploy to ECS
 
 on:
   push:
