@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: My Action
-        uses: ./.github/actions/my-action
+        uses: ./.github/actions/test.yml
 
