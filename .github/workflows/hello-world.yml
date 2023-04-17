@@ -1,13 +1,13 @@
-name: Hello World
+name: Workflow Name
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types: [trigger-workflow]
 
 jobs:
-  hello-world:
+  job-name:
     runs-on: ubuntu-latest
     steps:
-      - name: Say Hello
-        run: echo "Hello World"
+      - name: Step Name
+        run: |
+          echo "Hello, world!"
