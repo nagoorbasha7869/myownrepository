@@ -1,9 +1,6 @@
 name: Nginx DockerHub & S3 Push
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -14,7 +11,7 @@ env:
   S3_BUCKET_NAME: my-github-actions-bucket
 
 jobs:
-  build-and-push:
+  build-and-push:  
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,6 +44,14 @@ jobs:
            
       - name: pushing artifact to s3
         run: aws s3 cp nginx_v2.0.tar s3://my-github-actions-bucket/path/to/nginx_v2.0.tar
+      
+  jobs:
+    needs: build-and-push
+    my-job: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello World!"
            
       
 
