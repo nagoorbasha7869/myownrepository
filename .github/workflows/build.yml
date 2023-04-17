@@ -7,10 +7,5 @@ jobs:
       - name: my-step
         run: echo "Hello World!"
 
-  second-job:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: My Action
-        uses: ./.github/actions/test.yml
+  
 
