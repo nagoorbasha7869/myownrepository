@@ -6,9 +6,11 @@ jobs:
     steps:
       - name: my-step
         run: echo "Hello World!"
+
   second-job:
-    needs: my-job
     runs-on: ubuntu-latest
     steps:
-      - name: my-step
-        run: echo "Hi All!"
+      - uses: actions/checkout@v2
+      - name: My Action
+        uses: ./.github/actions/my-action
+
