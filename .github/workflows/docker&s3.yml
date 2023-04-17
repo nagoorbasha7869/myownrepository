@@ -1,7 +1,9 @@
 name: Nginx DockerHub and S3 Push
 
-on: workflow_dispatch
-
+on:
+  push:
+    branches:
+      - main
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
