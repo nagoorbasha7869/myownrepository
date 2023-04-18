@@ -1,8 +1,9 @@
 name: Workflow Name
 
-on:
-  repository_dispatch:
-    types: [trigger-workflow]
+on: 
+ push:
+  branches: main
+  types: [trigger-workflow]
 
 jobs:
   job-name:
